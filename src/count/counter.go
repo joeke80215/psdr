@@ -2,47 +2,38 @@ package count
 
 import (
 	"fmt"
+	"../config"
+	"sync"
+	"../task"
 )
 
+type counter struct {
+	T int
+	S int
+	Mux sync.Mutex
+}
+
 var (
-	Total int
-	Success int
-	TotalCh chan int
-	SuccessCh chan int
-	writeCh chan bool
+	Tc int
+	tcf float32
+	Counter counter
 )
 
 func init() {
-	Total = 0
-	Success = 0
-	TotalCh = make(chan int)
-	SuccessCh = make(chan int)
-	writeCh = make(chan bool)
-	go func() {TotalCh <- 0}()
-	go func() {SuccessCh <- 0}()
-	go func() {writeCh <- true}()
-	go writeInfo()
+	Tc = config.Cfg.RoutineNum * config.Cfg.PackageNum
+	tcf = float32(Tc)
 }
 
-func Increate (c chan int) int {
-	t := <- c
-	t++
-	go func() {c <- t}()
-	return t
-}
+func WriteInfo () {
+	Counter.Mux.Lock()
+	fmt.Printf("\rTotal : %d | Success : %d | Fail : %d | Complete : %.2f",
+		Counter.T,
+		Counter.S,
+		Counter.T - Counter.S,
+		float32(Counter.T) / tcf)
+	Counter.Mux.Unlock()
 
-func writeInfo () {
-	for {
-		<- writeCh
-		Total = <- TotalCh
-		Success = <- SuccessCh
-
-		fmt.Printf("\rTotal : %d | Success : %d | Fail : %d ", Total, Success, Total - Success)
-		go func() {TotalCh <- Total}()
-		go func() {SuccessCh <- Success}()
+	if Counter.T == Tc {
+		task.StdoutDone <- true
 	}
-}
-
-func OutputInfo () {
-	writeCh <- true
 }

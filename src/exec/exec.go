@@ -2,33 +2,12 @@ package exec
 
 import (
 	"../sender"
-	"sync"
 	"../config"
 	"runtime"
-	"bufio"
 	"os"
 	"fmt"
+	"../task"
 )
-
-var (
-	breakCh chan bool
-	isFinish chan bool
-)
-
-func init() {
-	breakCh = make(chan bool)
-	isFinish = make(chan bool)
-	go breakSignal()
-}
-
-func breakSignal () {
-	scanner := bufio.NewScanner(os.Stdin)
-	for scanner.Scan() {
-		if scanner.Text() == "b" || scanner.Text() == "B" {
-			breakCh <- true
-		}
-	}
-}
 
 func Exec () {
 	exec(config.Cfg.RoutineNum,config.Cfg.PackageNum)
@@ -36,14 +15,12 @@ func Exec () {
 
 func exec (rn,pn int) {
 	isExec := false
-	var wg sync.WaitGroup
-	wg.Add(rn * pn)
 	for {
 		select {
-		case <- breakCh :
+		case <- task.BreakCh :
 			fmt.Print("break proccess\n")
 			os.Exit(0)
-		case <- isFinish :
+		case <- task.IsFinish :
 			fmt.Print("\nfinish proccess\n")
 			os.Exit(0)
 		default :
@@ -58,13 +35,12 @@ func exec (rn,pn int) {
 							runtime.Gosched()
 							sender.Handle()
 							p++
-							wg.Done()
 						}
 					}()
 					r++
 				}
-				wg.Wait()
-				isFinish <- true
+				<- task.StdoutDone
+				task.IsFinish <- true
 			}()
 		}
 		}

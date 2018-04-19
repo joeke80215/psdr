@@ -7,7 +7,7 @@ import (
 	"../tcp"
 	"../udp"
 	"../http"
-	"../count"
+	c "../count"
 )
 
 type sender func () error
@@ -37,10 +37,12 @@ func init() {
 
 func Handle () {
 	err := snd()
-	count.Increate(count.TotalCh)
+	c.Counter.Mux.Lock()
+	c.Counter.T++
 	if err == nil {
-		count.Increate(count.SuccessCh)
+		c.Counter.S++
 	}
-	count.OutputInfo()
+	go c.WriteInfo()
+	c.Counter.Mux.Unlock()
 }
 

@@ -5,3 +5,5 @@ bin/win7/.DS_Store
 *.iml
 src/.DS_Store
 *.exe
+src/psdr
+.DS_Store
