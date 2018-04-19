@@ -4,3 +4,4 @@ bin/win7/.DS_Store
 *.xml
 *.iml
 src/.DS_Store
+*.exe
