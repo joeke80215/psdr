@@ -39,8 +39,6 @@ func exec (rn,pn int) {
 					}()
 					r++
 				}
-				<- task.StdoutDone
-				task.IsFinish <- true
 			}()
 		}
 		}

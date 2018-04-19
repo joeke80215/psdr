@@ -34,6 +34,6 @@ func WriteInfo () {
 	Counter.Mux.Unlock()
 
 	if Counter.T == Tc {
-		task.StdoutDone <- true
+		task.IsFinish <- true
 	}
 }

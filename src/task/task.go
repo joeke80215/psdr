@@ -8,13 +8,11 @@ import (
 var (
 	BreakCh chan bool
 	IsFinish chan bool
-	StdoutDone chan bool
 )
 
 func init() {
 	BreakCh = make(chan bool)
 	IsFinish = make(chan bool)
-	StdoutDone = make(chan bool)
 	go breakSignal()
 }
 
