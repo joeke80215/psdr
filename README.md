@@ -1,4 +1,4 @@
-# packagesender
+# psdr
 Send network packages and stress test
 
 ## Usage
