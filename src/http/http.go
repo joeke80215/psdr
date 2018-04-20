@@ -13,13 +13,14 @@ type HTTP struct {
 }
 
 func (h HTTP) Send () error {
-	req, _ := http.NewRequest("POST", h.addrhttp, h.hPackage)
+	req, err := http.NewRequest("POST", h.addrhttp, h.hPackage)
+
 	req.Header.Set("Content-Type", "application/byte")
 
 	client := &http.Client{}
-	resp, err := client.Do(req)
+	_, err = client.Do(req)
 
-	defer resp.Body.Close()
+	//defer resp.Body.Close()
 	if err != nil {
 		return err
 	}
