@@ -12,7 +12,7 @@ Send network packages and stress test
 ## Optional
 * -H : Target host (default "127.0.0.1")
 * -P : Target host port (default "8080")
-* -mt : Request method(tcp/udp/http) (default "tcp")
+* -mt : Request method(tcp/udp/http) (default "udp")
 * -pn : Send how many packages (default 10)
 * -ps : Package size (byte) (default 1024)
 * -rn : Execute how many Routines (default 5)

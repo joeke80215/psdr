@@ -18,12 +18,12 @@ func (h HTTP) Send () error {
 	req.Header.Set("Content-Type", "application/byte")
 
 	client := &http.Client{}
-	_, err = client.Do(req)
+	resp, err := client.Do(req)
 
-	//defer resp.Body.Close()
 	if err != nil {
 		return err
 	}
+	resp.Body.Close()
 
 	return nil
 }
