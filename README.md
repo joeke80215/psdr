@@ -2,7 +2,7 @@
 Send network packages and stress test
 
 ## Usage
-* clone https://github.com/joeke80215/packagesender.git
+* clone https://github.com/joeke80215/psdr.git
 * in src,build ```go build -o psdr .```
 * execute ```./psdr -H <target host> -P <target port> -mt tcp```
 
@@ -12,7 +12,7 @@ Send network packages and stress test
 ## Optional
 * -H : Target host (default "127.0.0.1")
 * -P : Target host port (default "8080")
-* -mt : Request method(tcp/udp/http) (default "udp")
+* -mt : Request method(tcp/udp/http) (default "tcp")
 * -pn : Send how many packages (default 10)
 * -ps : Package size (byte) (default 1024)
 * -rn : Execute how many Routines (default 5)
