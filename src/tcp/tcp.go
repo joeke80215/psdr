@@ -5,6 +5,7 @@ import (
 	"io"
 	"../config"
 	"fmt"
+	"../iountil"
 )
 
 type TCP struct {
@@ -18,8 +19,7 @@ func (t TCP) Send () error {
 		return err
 	}
 
-	io.Copy(ds, t.tPackage)
-	ds.Close()
+	go iountil.Copy(ds, t.tPackage)
 
 	return err
 }

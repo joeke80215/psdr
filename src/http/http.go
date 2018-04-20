@@ -19,7 +19,6 @@ func (h HTTP) Send () error {
 
 	client := &http.Client{}
 	resp, err := client.Do(req)
-
 	if err != nil {
 		return err
 	}

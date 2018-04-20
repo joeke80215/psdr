@@ -22,7 +22,7 @@ var (
 	rn = flag.Int("rn",2,"Execute how many Routines")
 	pn = flag.Int("pn",5,"Send how many packages")
 	ps = flag.Int("ps",1024,"Package size (byte)")
-	mt = flag.String("mt","udp","Request method(tcp/udp/http)")
+	mt = flag.String("mt","tcp","Request method(tcp/udp/http)")
 	tm = flag.Int("tm",100,"Sleep time(millisecond).")
 )
 

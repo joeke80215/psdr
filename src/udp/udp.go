@@ -5,13 +5,12 @@ import (
 	"io"
 	"../config"
 	"fmt"
-	"bytes"
+	"../iountil"
 )
 
 type UDP struct {
 	addrudp *net.UDPAddr
 	uPackage io.Reader
-	ubyte *bytes.Buffer
 }
 
 func (u UDP) Send () error {
@@ -20,20 +19,14 @@ func (u UDP) Send () error {
 		return err
 	}
 
-	_, err = conn.Write(u.ubyte.Bytes())
-	if err != nil {
-		return err
-	}
-	conn.Close()
+	go iountil.Copy(conn,u.uPackage)
 
-	return err
+	return nil
 }
 
 func New (p io.Reader) *UDP {
 	u := new(UDP)
 	u.addrudp,_ = net.ResolveUDPAddr("udp", fmt.Sprintf("%s:%s",config.Cfg.Host,config.Cfg.Port))
 	u.uPackage = p
-	u.ubyte = new(bytes.Buffer)
-	u.ubyte.ReadFrom(u.uPackage)
 	return u
 }
