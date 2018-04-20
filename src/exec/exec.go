@@ -32,6 +32,9 @@ func exec (rn,pn int) {
 					go func() {
 						p := 0
 						for p < pn {
+							if config.Cfg.Timer > 0 {
+								<- task.Timer
+							}
 							runtime.Gosched()
 							sender.Handle()
 							p++

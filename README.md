@@ -15,7 +15,8 @@ Send network packages and stress test
 * -mt : Request method(tcp/udp/http) (default "tcp")
 * -pn : Send how many packages (default 10)
 * -ps : Package size (byte) (default 1024)
-* -rn Execute how many Routines (default 5)
+* -rn : Execute how many Routines (default 5)
+* -tm : Sleep time(millisecond) (default 1000)
 
 ## Note
 * send total packages = routines(-rn) * packages(-ps)

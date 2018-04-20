@@ -12,6 +12,7 @@ type config struct {
 	Sleep int
 	PackageSize int
 	Method string
+	Timer int
 }
 
 var (
@@ -22,6 +23,7 @@ var (
 	pn = flag.Int("pn",5,"Send how many packages")
 	ps = flag.Int("ps",1024,"Package size (byte)")
 	mt = flag.String("mt","tcp","Request method(tcp/udp/http)")
+	tm = flag.Int("tm",1000,"Sleep time(millisecond).")
 )
 
 func init() {
@@ -33,4 +35,5 @@ func init() {
 	Cfg.Port = *port
 	Cfg.PackageSize = *ps
 	Cfg.Method = *mt
+	Cfg.Timer = *tm
 }
