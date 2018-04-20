@@ -17,9 +17,9 @@ func (t TCP) Send () error {
 	if err!= nil {
 		return err
 	}
-	defer ds.Close()
 
 	io.Copy(ds, t.tPackage)
+	ds.Close()
 
 	return err
 }
