@@ -3,7 +3,6 @@ package exec
 import (
 	"../sender"
 	"../config"
-	"runtime"
 	"os"
 	"fmt"
 	"../task"
@@ -35,7 +34,6 @@ func exec (rn,pn int) {
 							if config.Cfg.Timer > 0 {
 								<- task.Timer
 							}
-							runtime.Gosched()
 							sender.Handle()
 							p++
 						}
