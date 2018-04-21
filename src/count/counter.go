@@ -8,14 +8,20 @@ import (
 )
 
 type counter struct {
+	//already send packages
 	T int
+	//success
 	S int
+	//lock when output screen and count
 	Mux sync.Mutex
 }
 
 var (
+	//total packages Num
 	Tc int
+	//total packages Num integer to float
 	tcf float32
+	//count current send stage
 	Counter counter
 )
 

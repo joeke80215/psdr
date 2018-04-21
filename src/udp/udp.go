@@ -9,7 +9,10 @@ import (
 )
 
 type UDP struct {
+	//ip:port
 	addrudp *net.UDPAddr
+
+	//package to target server
 	uPackage io.Reader
 }
 

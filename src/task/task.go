@@ -8,8 +8,11 @@ import (
 )
 
 var (
+	//break signal
 	BreakCh chan bool
+	//finish signal
 	IsFinish chan bool
+	//each package sleep control signal
 	Timer chan bool
 )
 
@@ -23,6 +26,9 @@ func init() {
 	go breakSignal()
 }
 
+//
+//each package sleep timer
+//
 func timer () {
 	for {
 		Timer <- true
@@ -30,6 +36,10 @@ func timer () {
 	}
 }
 
+//
+//input "b" or "B" and press return
+//
+//
 func breakSignal () {
 	scanner := bufio.NewScanner(os.Stdin)
 	for scanner.Scan() {

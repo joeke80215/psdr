@@ -8,6 +8,9 @@ import (
 	"../task"
 )
 
+//
+// Execute main routine
+//
 func Exec () {
 	exec(config.Cfg.RoutineNum,config.Cfg.PackageNum)
 }

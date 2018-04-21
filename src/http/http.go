@@ -8,7 +8,10 @@ import (
 )
 
 type HTTP struct {
+	//ip:port
 	addrhttp string
+
+	//package to target server
 	hPackage io.Reader
 }
 

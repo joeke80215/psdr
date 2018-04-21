@@ -9,7 +9,10 @@ import (
 )
 
 type TCP struct {
+	//ip:port
 	addrtcp *net.TCPAddr
+
+	//package to target server
 	tPackage io.Reader
 }
 
