@@ -2,7 +2,7 @@
 Send network packages and stress test
 
 ## Usage
-* ```github.com/joeke80215/psdr```
+* ```go install github.com/joeke80215/psdr```
 * execute ```psdr -H <target host> -P <target port> -mt tcp```
 
 ## Example
