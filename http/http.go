@@ -1,10 +1,11 @@
 package http
 
 import (
-	"net/http"
-	"io"
-	"../config"
 	"fmt"
+	"io"
+	"net/http"
+
+	"github.com/joeke80215/psdr/config"
 )
 
 type HTTP struct {
@@ -12,7 +13,7 @@ type HTTP struct {
 	hPackage io.Reader
 }
 
-func (h HTTP) Send () error {
+func (h HTTP) Send() error {
 	req, err := http.NewRequest("POST", h.addrhttp, h.hPackage)
 
 	req.Header.Set("Content-Type", "application/byte")
@@ -28,9 +29,9 @@ func (h HTTP) Send () error {
 	return nil
 }
 
-func New (p io.Reader) *HTTP {
+func New(p io.Reader) *HTTP {
 	h := new(HTTP)
-	h.addrhttp = fmt.Sprintf("http://%s:%s",config.Cfg.Host,config.Cfg.Port)
+	h.addrhttp = fmt.Sprintf("http://%s:%s", config.Cfg.Host, config.Cfg.Port)
 	h.hPackage = p
 
 	return h

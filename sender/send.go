@@ -3,11 +3,11 @@ package sender
 import (
 	"log"
 	"bytes"
-	"../config"
-	"../tcp"
-	"../udp"
-	"../http"
-	c "../count"
+	"github.com/joeke80215/psdr/config"
+	"github.com/joeke80215/psdr/tcp"
+	"github.com/joeke80215/psdr/udp"
+	"github.com/joeke80215/psdr/http"
+	c "github.com/joeke80215/psdr/count"
 )
 
 type sender func () error

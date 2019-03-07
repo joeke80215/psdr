@@ -1,12 +1,13 @@
 package main
 
 import (
-	"./exec"
-	"runtime"
 	"os"
+	"runtime"
+
+	"github.com/joeke80215/psdr/exec"
 )
 
-func init () {
+func init() {
 	if os.Getenv("GOMAXPROCS") == "" {
 		runtime.GOMAXPROCS(runtime.NumCPU())
 	}

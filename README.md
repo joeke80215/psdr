@@ -2,12 +2,11 @@
 Send network packages and stress test
 
 ## Usage
-* clone https://github.com/joeke80215/packagesender.git
-* in src,build ```go build -o psdr .```
-* execute ```./psdr -H <target host> -P <target port> -mt tcp```
+* ```github.com/joeke80215/psdr```
+* execute ```psdr -H <target host> -P <target port> -mt tcp```
 
 ## Example
-```./psdr -H 192.168.100.100 -P 80 -mt tcp```
+```psdr -H 192.168.100.100 -P 80 -mt tcp```
 
 ## Optional
 * -H : Target host (default "127.0.0.1")

@@ -2,20 +2,21 @@ package count
 
 import (
 	"fmt"
-	"../config"
 	"sync"
-	"../task"
+
+	"github.com/joeke80215/psdr/config"
+	"github.com/joeke80215/psdr/task"
 )
 
 type counter struct {
-	T int
-	S int
+	T   int
+	S   int
 	Mux sync.Mutex
 }
 
 var (
-	Tc int
-	tcf float32
+	Tc      int
+	tcf     float32
 	Counter counter
 )
 
@@ -24,13 +25,13 @@ func init() {
 	tcf = float32(Tc)
 }
 
-func WriteInfo () {
+func WriteInfo() {
 	Counter.Mux.Lock()
 	fmt.Printf("\rTotal : %d | Success : %d | Fail : %d | Complete : %.2f",
 		Counter.T,
 		Counter.S,
-		Counter.T - Counter.S,
-		float32(Counter.T) / tcf)
+		Counter.T-Counter.S,
+		float32(Counter.T)/tcf)
 	Counter.Mux.Unlock()
 
 	if Counter.T == Tc {

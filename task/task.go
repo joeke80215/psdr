@@ -3,14 +3,15 @@ package task
 import (
 	"bufio"
 	"os"
-	"../config"
 	"time"
+
+	"github.com/joeke80215/psdr/config"
 )
 
 var (
-	BreakCh chan bool
+	BreakCh  chan bool
 	IsFinish chan bool
-	Timer chan bool
+	Timer    chan bool
 )
 
 func init() {
@@ -23,14 +24,14 @@ func init() {
 	go breakSignal()
 }
 
-func timer () {
+func timer() {
 	for {
 		Timer <- true
 		time.Sleep(time.Millisecond * time.Duration(config.Cfg.Timer))
 	}
 }
 
-func breakSignal () {
+func breakSignal() {
 	scanner := bufio.NewScanner(os.Stdin)
 	for scanner.Scan() {
 		if scanner.Text() == "b" || scanner.Text() == "B" {
